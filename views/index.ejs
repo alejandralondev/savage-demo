@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>21 Savage Fans</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>21 Savage</h1>
+  <h2>Why you trappin so hard?</h2>
+
+
+  <h3>Messages</h3>
+  <!-- we are building an li , we got back an array that had 2 objects in it, so the for loop will run 2 times, and each time it runs its adding an li to the html document -->
+  <!-- so since we had 2 documents in our collection, 
+    we got 2 objects back
+    we passed those 2 objects into our ejs
+    the ejs for loop will run twice
+    building an li for each of the documents we had
+    once this is done, all the crap disappears
+    and we have a raw html file 
+    that we then respond back to the user with
+  -->
+  <ul class="messages">
+  <% for(var i=0; i<messages.length; i++) {%>
+    <li class="message">
+      <span><%= messages[i].name %></span>
+      <span><%= messages[i].msg %></span>
+      <span><%= messages[i].thumbUp %></span>
+      <span><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+      <span><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+      <span><i class="fa fa-trash" aria-hidden="true"></i></span>
+    </li>
+  <% } %>
+  </ul>
+
+  <h2>Add a message</h2>
+   <!-- no click for submit on client side js - this defaults to the default for a form - automagically, sumbit buttons and the forms predate client side javascript -->
+  <!-- form submits by its self client side, makes post request from the server -->
+  <!-- server hears request, uses api that we just wrote "was it a get, no. was it a post, yes. was the post tied to form, yes. this is post we're talking about" -->
+  <!-- we have coded the post to go to mondo db collection and add a new document -->
+  <!-- the other instruction we wrote for post is to redirect (refresh the page)-->
+  <!-- SO once refreshed, the browser makes new request to server, this time GET request, get request goes to db, finds collection, finds documents and plugs it into the ejs, EXCEPT now where there was 2 objects now there are 3!! and the ejs spits out html -->
+  <!-- form action /messages same as POST! -->
+  <form action="/messages" method="POST">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="message" name="msg">
+    <button type="submit">Submit</button>
+  </form>
+
+  <script src="main.js"></script>
+
+</body>
+</html>
